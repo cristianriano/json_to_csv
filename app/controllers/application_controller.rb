@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Shared behaviour with other controllers
 class ApplicationController < Sinatra::Base
   helpers ApplicationHelper
 
@@ -8,6 +9,6 @@ class ApplicationController < Sinatra::Base
   end
 
   configure :test, :development do
-    require "pry"
+    require 'pry'
   end
 end

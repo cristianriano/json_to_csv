@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gem "puma", "~> 4.3"
-gem "sinatra", "~> 2.0"
+gem 'puma', '~> 4.3'
+gem 'rubocop', '~> 0.76', require: false
+gem 'sinatra', '~> 2.0'
 
 group :test do
-  gem "rack-test", "~> 1.1"
-  gem "rspec", "~> 3.9"
-  gem "pry", "~> 0.12"
+  gem 'pry', '~> 0.12'
+  gem 'rack-test', '~> 1.1'
+  gem 'rspec', '~> 3.9'
 end

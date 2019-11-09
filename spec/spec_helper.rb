@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-ENV["ENVIRONMENT"] ||= "test"
+ENV['ENVIRONMENT'] ||= 'test'
 
-require File.expand_path("../config/environment.rb", __dir__)
+require File.expand_path('../config/environment.rb', __dir__)
 
-require "rack/test"
+require 'rack/test'
 
 RSpec.configure do |config|
   config.expose_dsl_globally = true
@@ -21,8 +21,7 @@ RSpec.configure do |config|
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
-  config.example_status_persistence_file_path = "spec/examples.txt"
-
+  config.example_status_persistence_file_path = 'spec/examples.txt'
 
   config.disable_monkey_patching!
 
