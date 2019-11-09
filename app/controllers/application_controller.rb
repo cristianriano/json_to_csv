@@ -6,9 +6,14 @@ class ApplicationController < Sinatra::Base
 
   configure :production, :development do
     enable :logging
+    enable :raise_errors
+    disable :raise_errors
+    disable :show_exceptions
   end
 
   configure :test, :development do
     require 'pry'
+
+    enable :show_exceptions
   end
 end

@@ -5,6 +5,8 @@ ENV['ENVIRONMENT'] ||= 'test'
 require File.expand_path('../config/environment.rb', __dir__)
 
 require 'rack/test'
+require 'approvals'
+require 'approvals/rspec'
 
 RSpec.configure do |config|
   config.expose_dsl_globally = true
@@ -31,6 +33,14 @@ RSpec.configure do |config|
 
   config.order = :random
   Kernel.srand config.seed
+
+  # Other configs
+  config.approvals_default_format = :txt
+  config.diff_on_approval_failure = true
+
+  Approvals.configure do |c|
+    c.approvals_path = 'spec/fixtures/approvals/'
+  end
 
   def app
     described_class
