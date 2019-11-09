@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-ENV["APP_ENV"] = ENV["ENVIRONMENT"] ||= "development"
+ENV["RACK_ENV"] = ENV["APP_ENV"] = ENV["ENVIRONMENT"] ||= "development"
 
 require "rubygems"
 require "bundler"
