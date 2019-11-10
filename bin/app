@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+case (command = ARGV.first).to_sym
+when :console, :c
+  exec "bundle exec racksh"
+when :server, :s
+  exec "env ENVIRONMENT=production bundle exec puma -p 8080 -C config/puma.rb"
+when :server_dev, :sd
+  exec "bundle exec puma -p 3000"
+else
+  puts "Unsupported command '#{command}'"
+  puts "See bin/app for available commands."
+end
