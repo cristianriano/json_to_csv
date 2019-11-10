@@ -2,7 +2,7 @@
 
 require 'csv'
 
-# Service to convert an array of hashes into CSV
+# Lazily converts an array of JSON objects into CSV lines
 class ConversorToCSV
   attr_reader :items
 
@@ -11,19 +11,18 @@ class ConversorToCSV
   end
 
   def call
-    CSV.generate do |csv|
-      items.each do |item|
-        write_item(item, csv)
-      end
+    return enum_for(:call) unless block_given?
+
+    items.each do |item|
+      yield write_item(item)
     end
   end
 
   private
 
-  def write_item(item, csv)
-    csv << item.keys
-    csv << item.values.map { |i| escape_item(i) }
-    csv << []
+  def write_item(item)
+    values = item.values.map { |i| escape_item(i) }
+    CSV.generate_line(item.keys) + CSV.generate_line(values) + "\n"
   end
 
   def escape_item(item)
